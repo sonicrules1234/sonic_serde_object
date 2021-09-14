@@ -1,0 +1,14 @@
+[package]
+name = "sonic_serde_object"
+version = "0.1.0"
+edition = "2018"
+description = "An enum that can contain different types of variables along with a lot of From implementations"
+license-file = "LICENSE"
+repository = "https://github.com/sonicrules1234/sonic_serde_object"
+readme = "README.md"
+homepage = "https://github.com/sonicrules1234/sonic_serde_object"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0.126", features = ["derive"] }
+thiserror = "1.0.29"
