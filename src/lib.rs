@@ -10,6 +10,7 @@ pub enum SonicSerdeObject {
     Vec(Vec<SonicSerdeObject>),
     Map(BTreeMap<SonicSerdeObject, SonicSerdeObject>),
     U8(u8),
+    Bool(bool),
     SystemTime(SystemTime),
 
     //U128(u128),
@@ -37,6 +38,7 @@ impl SonicSerdeObject {
             Self::U8(_x) => false,
             Self::String(_x) => false,
             Self::SystemTime(_x) => false,
+            Self::Bool(_x) => false,
         }
     }
     pub fn is_string(&self) -> bool {
@@ -46,6 +48,7 @@ impl SonicSerdeObject {
             Self::U8(_x) => false,
             Self::String(_x) => true,
             Self::SystemTime(_x) => false,
+            Self::Bool(_x) => false,
         }
     }
     pub fn is_map(&self) -> bool {
@@ -55,6 +58,7 @@ impl SonicSerdeObject {
             Self::U8(_x) => false,
             Self::String(_x) => false,
             Self::SystemTime(_x) => false,
+            Self::Bool(_x) => false,
         }
     }
     pub fn is_u8(&self) -> bool {
@@ -64,6 +68,17 @@ impl SonicSerdeObject {
             Self::U8(_x) => true,
             Self::String(_x) => false,
             Self::SystemTime(_x) => false,
+            Self::Bool(_x) => false,
+        }
+    }
+    pub fn is_bool(&self) -> bool {
+        match self {
+            Self::Vec(_x) => false,
+            Self::Map(_x) => false,
+            Self::U8(_x) => false,
+            Self::String(_x) => false,
+            Self::SystemTime(_x) => false,
+            Self::Bool(_x) => true,
         }
     }
     pub fn as_str(&self) -> Result<&str, SonicSerdeObjectError> {
@@ -73,6 +88,7 @@ impl SonicSerdeObject {
             Self::U8(_x) => Err(SonicSerdeObjectError::NotA("str".to_string())),
             Self::String(x) => Ok(x.as_str()),
             Self::SystemTime(_x) => Err(SonicSerdeObjectError::NotA("str".to_string())),
+            Self::Bool(_x) => Err(SonicSerdeObjectError::NotA("str".to_string())),
         }
     }
     pub fn as_vec(&self) -> Result<Vec<SonicSerdeObject>, SonicSerdeObjectError> {
@@ -82,6 +98,7 @@ impl SonicSerdeObject {
             Self::U8(_x) => Err(SonicSerdeObjectError::NotA("vec".to_string())),
             Self::String(_x) => Err(SonicSerdeObjectError::NotA("vec".to_string())),
             Self::SystemTime(_x) => Err(SonicSerdeObjectError::NotA("vec".to_string())),
+            Self::Bool(_x) => Err(SonicSerdeObjectError::NotA("vec".to_string())),
         }
     }
     pub fn as_map(&self) -> Result<BTreeMap<SonicSerdeObject, SonicSerdeObject>, SonicSerdeObjectError> {
@@ -91,6 +108,7 @@ impl SonicSerdeObject {
             Self::U8(_x) => Err(SonicSerdeObjectError::NotA("map".to_string())),
             Self::String(_x) => Err(SonicSerdeObjectError::NotA("map".to_string())),
             Self::SystemTime(_x) => Err(SonicSerdeObjectError::NotA("map".to_string())),
+            Self::Bool(_x) => Err(SonicSerdeObjectError::NotA("map".to_string())),
         }
     }
     pub fn as_system_time(&self) -> Result<SystemTime, SonicSerdeObjectError> {
@@ -100,6 +118,17 @@ impl SonicSerdeObject {
             Self::U8(_x) => Err(SonicSerdeObjectError::NotA("systemtime".to_string())),
             Self::String(_x) => Err(SonicSerdeObjectError::NotA("systemtime".to_string())),
             Self::SystemTime(x) => Ok(x.clone()),
+            Self::Bool(_x) => Err(SonicSerdeObjectError::NotA("systemtime".to_string())),
+        }
+    }
+    pub fn as_bool(&self) -> Result<bool, SonicSerdeObjectError> {
+        match self {
+            Self::Vec(_x) => Err(SonicSerdeObjectError::NotA("bool".to_string())),
+            Self::Map(_x) => Err(SonicSerdeObjectError::NotA("bool".to_string())), 
+            Self::U8(_x) => Err(SonicSerdeObjectError::NotA("bool".to_string())),
+            Self::String(_x) => Err(SonicSerdeObjectError::NotA("bool".to_string())),
+            Self::SystemTime(_x) => Err(SonicSerdeObjectError::NotA("bool".to_string())),
+            Self::Bool(x) => Ok(x.clone()),
         }
     }
     pub fn push(&mut self, val: impl Into<SonicSerdeObject>) {
@@ -136,6 +165,11 @@ impl From<u8> for SonicSerdeObject {
     }
 }
 
+impl From<bool> for SonicSerdeObject {
+    fn from(bool_val: bool) -> SonicSerdeObject {
+        SonicSerdeObject::Bool(bool_val)
+    }
+}
 
 impl From<String> for SonicSerdeObject {
     fn from(string_val: String) -> SonicSerdeObject {

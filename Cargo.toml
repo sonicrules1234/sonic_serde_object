@@ -1,6 +1,6 @@
 [package]
 name = "sonic_serde_object"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2018"
 description = "An enum that can contain different types of variables along with a lot of From implementations"
 license-file = "LICENSE"
