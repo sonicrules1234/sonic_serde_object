@@ -1,2 +1,5 @@
 /target
 Cargo.lock
+/sonic_serde_macros/target
+/sonic_serde_macros/Cargo.lock
+

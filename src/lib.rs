@@ -1,3 +1,6 @@
+
+sonic_serde_macros::sonic_serde_obj!();
+/*
 //use std::collections::HashMap;
 use std::collections::BTreeMap;
 use std::collections::HashMap;
@@ -12,7 +15,7 @@ pub enum SonicSerdeObject {
     U8(u8),
     Bool(bool),
     SystemTime(SystemTime),
-
+    VecU8(Vec<u8>),
     //U128(u128),
 }
 
@@ -39,6 +42,7 @@ impl SonicSerdeObject {
             Self::String(_x) => false,
             Self::SystemTime(_x) => false,
             Self::Bool(_x) => false,
+            Self::VecU8(_x) => false,
         }
     }
     pub fn is_string(&self) -> bool {
@@ -49,6 +53,7 @@ impl SonicSerdeObject {
             Self::String(_x) => true,
             Self::SystemTime(_x) => false,
             Self::Bool(_x) => false,
+            Self::VecU8(_x) => false,
         }
     }
     pub fn is_map(&self) -> bool {
@@ -227,6 +232,7 @@ impl From<SystemTime> for SonicSerdeObject {
 pub enum SonicSerdeObjectError {
     NotA(String),
 }
+*/
 /*
 impl SonicSerdeMap {
     pub fn new() -> Self {
