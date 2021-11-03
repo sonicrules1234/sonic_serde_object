@@ -1,6 +1,6 @@
 [package]
 name = "sonic_serde_object"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2018"
 description = "An enum that can contain different types of variables along with a lot of From implementations"
 license-file = "LICENSE"
@@ -13,9 +13,10 @@ homepage = "https://github.com/sonicrules1234/sonic_serde_object"
 #proc-macro = true
 
 [dependencies]
-inline-proc = {version = "0.1.0", features = [ "ron" ] }
+#inline-proc = {version = "0.1.0", features = [ "ron" ] }
 #proc-macro2 = "1.0.32"
 serde = { version = "1.0.126", features = ["derive"] }
+sonic_serde_macros = "0.1.1"
 #sonic_serde_macros = { path = "sonic_serde_macros" }
 thiserror = "1.0.29"
 
