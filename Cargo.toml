@@ -1,6 +1,6 @@
 [package]
 name = "sonic_serde_object"
-version = "0.2.5"
+version = "0.2.6"
 edition = "2021"
 description = "An enum that can contain different types of variables along with a lot of From implementations"
 license-file = "LICENSE"
@@ -14,6 +14,6 @@ homepage = "https://github.com/sonicrules1234/sonic_serde_object"
 
 [dependencies]
 serde = { version = "1.0.126", features = ["derive"] }
-sonic_serde_macros = "0.1.4"
-
+sonic_serde_macros = "0.1.6"
+ordered-float = { version = "2.8.0", features = ["serde"] }
 [features]
